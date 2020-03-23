@@ -1,6 +1,6 @@
 import React from 'react';
-import {connect} from 'react-redux';
-import {BrowserRouter, Switch, Route} from 'react-router-dom';
+import { connect } from 'react-redux';
+import { BrowserRouter, Route } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import MainLayout from './components/layout/MainLayout/MainLayout';
 import Home from './components/views/Home/Home';
@@ -13,8 +13,8 @@ import Trip from './components/views/Trip/TripContainer';
 import Info from './components/views/Info/Info';
 import NotFound from './components/views/NotFound/NotFound';
 import parseTrips from './utils/parseTrips';
-import {setMultipleStates} from './redux/globalRedux';
-import {AnimatedSwitch} from 'react-router-transition';
+import { setMultipleStates } from './redux/globalRedux';
+import { AnimatedSwitch } from 'react-router-transition';
 import styles from './styles/App.scss';
 
 
@@ -24,41 +24,41 @@ class App extends React.Component {
     setStates: PropTypes.func,
   }
 
-  constructor(props){
+  constructor(props) {
     super(props);
     // parse trips when App is first created
     parseTrips(this.props.trips, this.props.setStates);
   }
 
-  componentDidUpdate(prevProps){
-    if(prevProps.trips != this.props.trips){
+  componentDidUpdate(prevProps) {
+    if (prevProps.trips != this.props.trips) {
       // parse trips again if they changed
       parseTrips(this.props.trips, this.props.setStates);
     }
   }
 
-  render(){
+  render() {
     return (
       <BrowserRouter>
         <MainLayout>
-          <AnimatedSwitch 
-                location={location}
-                atEnter={{translateY: 200, opacity: 0}}
-                atLeave={{translateY: 200, opacity: 0}}
-                atActive={{translateY: 0, opacity: 1}}
-                className ={styles.switchwrapper}
-                mapStyles={styles => ({
-                  transform: `translateY(${styles.translateY}%)`,
-                  opacity: styles.opacity,
-                })}
-              >
+          <AnimatedSwitch
+    location={location}
+    atEnter={{ translateY: 200, opacity: 0 }}
+    atLeave={{ translateY: 200, opacity: 0 }}
+    atActive={{ translateY: 0, opacity: 1 }}
+    className={styles.switchwrapper}
+    mapStyles={styles => ({
+      transform: `translateY(${styles.translateY}%)`,
+      opacity: styles.opacity,
+    })}
+          >
 
             <Route exact path='/' component={Home} />
             <Route exact path='/trips' component={Trips} />
-            <Route exact path ='/countries' component={Countries} />
-            <Route exact path ='/regions'component={Regions} />
+            <Route exact path='/countries' component={Countries} />
+            <Route exact path='/regions' component={Regions} />
             <Route exact path='trips/:id' component={Trip} />
-            <Route exact path ='country/:id' component={Country} />
+            <Route exact path='country/:id' component={Country} />
             <Route exact path='/info' component={Info} />
             <Route path='*' component={NotFound} />
           </AnimatedSwitch>
