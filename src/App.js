@@ -46,7 +46,7 @@ class App extends React.Component {
     atEnter={{ translateY: 200, opacity: 0 }}
     atLeave={{ translateY: 200, opacity: 0 }}
     atActive={{ translateY: 0, opacity: 1 }}
-    className={styles.switchwrapper}
+    className={styles.switchWrapper}
     mapStyles={styles => ({
       transform: `translateY(${styles.translateY}%)`,
       opacity: styles.opacity,
