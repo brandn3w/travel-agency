@@ -1,6 +1,6 @@
 /* SELECTORS */
 
-export const getAllFilters = ({filters}) => filters;
+export const getAllFilters = ({ filters }) => filters;
 
 /* ACTIONS */
 
@@ -10,13 +10,15 @@ const createActionName = name => `app/${reducerName}/${name}`;
 
 // action types
 export const CHANGE_PHRASE = createActionName('CHANGE_PHRASE');
-export const CHANGE_TAGS =createActionName('CHANGE_TAGS');
+export const ADD_TAG = createActionName('ADD_TAG');
+export const REMOVE_TAG = createActionName('REMOVE_TAG');
 export const CHANGE_DURATION = createActionName('CHANGE_DURATION');
 
 // action creators
 export const changeSearchPhrase = payload => ({ payload, type: CHANGE_PHRASE });
-export const changeTags = payload => ({payload, type: CHANGE_TAGS});
-export const changeDuration =payload => ({payload, type: CHANGE_DURATION});
+export const addTripTag = payload => ({ payload, type: ADD_TAG });
+export const removeTripTag = payload => ({ payload, type: REMOVE_TAG });
+export const changeDuration = payload => ({ payload, type: CHANGE_DURATION });
 
 // reducer
 export default function reducer(statePart = [], action = {}) {
@@ -26,17 +28,24 @@ export default function reducer(statePart = [], action = {}) {
         ...statePart,
         searchPhrase: action.payload,
       };
-
-    case CHANGE_TAGS:
-      return{
+    case ADD_TAG:
+      return {
         ...statePart,
-        tags: action.payload,
+        tags: [
+          ...statePart.tags,
+          action.payload.tag,
+        ],
       };
-      case CHANGE_DURATION :
-        return{
-          ...statePart,
-          duration: action.payload,
-        };
+    case REMOVE_TAG:
+      return {
+        ...statePart,
+        tags: [...statePart.tags.filter(tag => tag != action.payload.tag)]
+      };
+    case CHANGE_DURATION:
+      return {
+        ...statePart,
+        duration: action.payload,
+      };
 
     default:
       return statePart;
