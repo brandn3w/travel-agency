@@ -21,7 +21,7 @@ const Trip = ({error, name, image, cost, days, description, country, intro}) => 
         <PageTitle text={name} />
       </Grid>
       <DetailsBox>
-        <OrderForm />
+        <OrderForm tripCost={cost}/>
         <DetailsImage>
           <SideImage source={image} />
         </DetailsImage>
