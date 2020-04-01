@@ -9,3 +9,4 @@ const OrderOptionCheckboxes =()=> {
 );
 };
 
+export default OrderOptionCheckboxes;

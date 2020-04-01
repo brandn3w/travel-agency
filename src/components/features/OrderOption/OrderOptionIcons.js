@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import OrderOptionDropdown from './OrderOptionDropdown';
 
 
 const OrderOptionIcons=()=> {
@@ -8,3 +9,5 @@ const OrderOptionIcons=()=> {
     <div >OrderOptionIcons</div>
 );
 };
+
+export default OrderOptionIcons;

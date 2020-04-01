@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import OrderOptionCheckboxes from './OrderOptionCheckboxes';
 
 
 const OrderOptionDropdown =()=> {
@@ -8,3 +9,4 @@ const OrderOptionDropdown =()=> {
     <div >OrderOptionCheckboxes</div>
 );
 };
+export default OrderOptionDropdown;
