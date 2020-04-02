@@ -2,10 +2,10 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 
-const OrderOptionCheckboxes =()=> {
+const OrderOptionCheckboxes =({name})=> {
 
     return(
-    <div >OrderOptionCheckboxes</div>
+    <div >{name}</div>
 );
 };
 
