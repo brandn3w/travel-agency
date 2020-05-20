@@ -8,7 +8,7 @@ describe('Component TripSummary', () => {
         const component = shallow(<TripSummary id={id} />);
         const renderedUrl = component.find('.link').prop('to');
         expect(renderedUrl).toEqual(`/trip/${id}`);
-        console.log(renderedUrl.debug());
+        console.log(component.debug());
     });
 
     it('should get <img> to have correct src and alt', () => {
@@ -30,9 +30,7 @@ it('should render name, cost and days correctly', () => {
     console.log(component.debug());
 });
 
-it('should throw an error if no props', () => {
-    expect(() => shallow(<TripSummary />)).toThrow();
-});
+
 
 it('should render tags correctly', () => {
     const expectedArray = ['lorem', 'impsum', 'dolor']
