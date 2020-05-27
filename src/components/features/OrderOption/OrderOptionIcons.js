@@ -28,7 +28,7 @@ const OrderOptionIcons = ({ values, required, currentValue, setOptionValue }) =>
         value={value.id}
         onClick={() => (setOptionValue(value.id))}
       >
-        <Icon className={value.icon} />
+        <Icon name={value.icon} />
         {value.name} ({formatPrice(value.price)})
       </div>
     ))}
