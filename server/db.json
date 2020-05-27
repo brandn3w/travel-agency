@@ -145,6 +145,20 @@
       "tripName": "Marvelous foray in brilliant Tokelau",
       "tripCountry": "TKL",
       "id": 12
+    },
+    {
+      "car-rental": "full",
+      "accommodation": "hotel",
+      "features": [],
+      "adults": 1,
+      "children": 0,
+      "name": "fr",
+      "contact": "er",
+      "start-date": "",
+      "totalCost": "$129,802",
+      "tripName": "Marvelous foray in brilliant Tokelau",
+      "tripCountry": "TKL",
+      "id": 13
     }
   ]
 }

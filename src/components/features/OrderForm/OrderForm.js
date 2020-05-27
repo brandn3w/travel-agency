@@ -16,9 +16,13 @@ console.log(options);
   let allFilledIn = true;
   if(options.contact ===''){
     allFilledIn = false;
-    alert('Contact info is required');
-    return;
-  };
+    alert('Contact info is required');  
+  }else if
+    (options.name===''){
+      allFilledIn = false;
+      alert('Name is required');
+    } else {
+  
   const totalCost = formatPrice(calculateTotal(tripCost, options));
 
   const payload = {
@@ -47,7 +51,7 @@ console.log(options);
       console.log('parsedResponse', parsedResponse);
     });
 };
-
+};
 const OrderForm = ({ options, tripCost, setOrderOption, tripName, tripId, countryCode }) => (
       <Grid>
       <Row className = {StyleSheet.component}>
