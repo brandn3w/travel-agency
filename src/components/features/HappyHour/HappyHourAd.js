@@ -1,19 +1,31 @@
-
+import React from 'react';
+import PropTypes from 'prop-types';
 
 class HappyHourAd extends React.Component{
+    constructor(){
+        super();
+    }
 
-
+    getCountdownTime () {
+        const currentTime = new Date();
+        const nextNoon = new Date(Date.UTC(currentTime.getUTCFullYear(), currentTime.getUTCMonth(), currentTime.getUTCDate(), 12, 0, 0, 0));
+    
+        if(currentTime.getUTCHours() >=12) {
+          nextNoon.setUTCDate(currentTime.getUTCDate() + 1);
+        }
+        return Math.round((nextNoon.getTime() - currentTime.getTime())/1000);
+      };
+    
 
 render(){
+    const countdownTime = this.getCountdownTime();
+    const { title, description } = this.props;
+return(
 
-    return(
-        <div>
-    <h1 className={'title'}></h1>
-    <div className={'countdown'}></div>
-        </div>
-
-    )
+    <div className={'promoDescription'}>{this.getCountdownTime()}</div>
+    
+);
 }
 }
 
-export default HappyHourAd
+export default HappyHourAd;
