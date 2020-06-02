@@ -7,7 +7,7 @@ describe('Component OrderOption', () => {
     it('should render without crashing', () => {
         const component = shallow(<OrderOption name='Lorem ipsum' type='text' />);
         expect(component).toBeTruthy();
-        console.log(component.debug());
+    
     });
 
     it('should return empty object if called without required props', () => {
@@ -126,15 +126,18 @@ for (let type in optionTypes) {
                     expect(mockSetOrderOption).toBeCalledTimes(1);
 
                 });
+            
                 break;
             }
             case 'icons': {
                 it(`contains ${mockProps.values.length} divs with class .icon`, () => {
                     const icons = renderedSubcomponent.find('.icon');
+                    console.log(renderedSubcomponent)
                     expect(icons.length).toBe(mockProps.values.length);
                 });
                 it('should run setOrderOption function on click', () => {
                     renderedSubcomponent.find('.icon').map((icon, key) => {
+                       
                         icon.simulate('click');
                         expect(mockSetOrderOption).toBeCalledWith({
                             [mockProps.id]: mockProps.values[key].id,
@@ -153,7 +156,7 @@ for (let type in optionTypes) {
                     renderedSubcomponent.find('input[type="number"]').simulate(
                         'change', { currentTarget: { value: testValueNumber } }
                     );
-                    expect(mockSetOrderoption).toBeCalledTimes(1);
+                    expect(mockSetOrderOption).toBeCalledTimes(1);
                     expect(mockSetOrderOption).toBeCalledWith(
                         { [mockProps.id]: testValueNumber }
                     );
@@ -163,10 +166,10 @@ for (let type in optionTypes) {
             case 'text': {
                 it('should render input type text', () => {
                     const text = renderedSubcomponent.find('input[type="text"]');
-                    expect(number.lenth).toBe(1);
+                    expect(number.length).toBe(1);
                 });
                 it('should run setOrderOption on change', () => {
-                    renderedSubcomponent.find('input[type:"text').simulate(
+                    renderedSubcomponent.find('input[type:"text"]').simulate(
                         'change', { currentTarget: { value: testValue } }
                     );
                     expect(mockSetOrderOption).teBeCalledTimes(1);
@@ -178,8 +181,8 @@ for (let type in optionTypes) {
             }
             case 'date': {
                 it('should render datapicker', () => {
-                    const datapisker = renderedSubcomponent.find(DatePicker);
-                    expect(datepicker.length).toBe(1);
+                    const datapicker = renderedSubcomponent.find(DatePicker);
+                    expect(datapicker.length).toBe(1);
                 });
                 it('should run setOrderOption function on change', () => {
                     renderedSubcomponent.find(DatePicker).simulate(
