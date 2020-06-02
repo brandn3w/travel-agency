@@ -1,37 +1,38 @@
-import React from 'react';
-import { shallow } from 'enzyme';
-import HappyHourAd from './HappyHourAd';
+import React from "react";
+import { shallow } from "enzyme";
+import HappyHourAd from "./HappyHourAd";
 
 const select = {
-  title: '.title',
-  promoDescription: '.promoDescription',
+  title: ".title",
+  promoDescription: ".promoDescription",
 };
 
 const mockProps = {
-  title: 'lorem ipsum',
-  promoDescription: 'sit amet'
+  title: "lorem ipsum",
+  promoDescription: "sit amet",
 };
 
-describe('Component HappyHourAd', () => {
-  it('should render without crashing', () => {
+describe("Component HappyHourAd", () => {
+  it("should render without crashing", () => {
     const component = shallow(<HappyHourAd />);
     expect(component).toBeTruthy();
   });
 
-
-  it('should render header and description', () => {
+  it("should render header and description", () => {
     const component = shallow(<HappyHourAd />);
     expect(component.exists(select.title)).toEqual(true);
     expect(component.exists(select.promoDescription)).toEqual(true);
   });
 
-  it('should render title and div from props', () => {
+  it("should render title and div from props", () => {
     const component = shallow(<HappyHourAd {...mockProps} />);
     expect(component.find(select.title).text()).toEqual(mockProps.title);
-    expect(component.find(select.promoDescription).text()).toEqual(mockProps.promoDescription);
+    expect(component.find(select.promoDescription).text()).toEqual(
+      mockProps.promoDescription
+    );
   });
 
-  it('Should render title and promoDescription', () => {
+  it("Should render title and promoDescription", () => {
     const expectedTitle = mockProps.title;
     const expectedDescription = mockProps.promoDescription;
 
@@ -45,19 +46,20 @@ describe('Component HappyHourAd', () => {
 });
 
 const trueDate = Date;
-const mockDate = customDate => class extends Date {
-  constructor(...args) {
-    if (args.length) {
-      super(...args);
-    } else {
-      super(customDate);
+const mockDate = (customDate) =>
+  class extends Date {
+    constructor(...args) {
+      if (args.length) {
+        super(...args);
+      } else {
+        super(customDate);
+      }
+      return this;
     }
-    return this;
-  }
-  static now() {
-    return (new Date(customDate)).getTime();
-  }
-};
+    static now() {
+      return new Date(customDate).getTime();
+    }
+  };
 const checkDescriptionAtTime = (time, expectedDescription) => {
   it(`should show correct at ${time}`, () => {
     global.Date = mockDate(`2019-05-14T${time}.135Z`);
@@ -90,30 +92,13 @@ const checkDescriptionAfterTime = (time, delaySeconds, expectedDescription) => {
   });
 };
 
-beforeAll(() => {
-  const utilsModule = jest.requireActual('../../../utils/formatTime.js');
-  utilsModule.formatTime = jest.fn(seconds => seconds);
+describe("Component HappyHourAdd with mocked Date", () => {
+  checkDescriptionAtTime("11:57:58", "122");
+  checkDescriptionAtTime("11:59:59", "1");
+  checkDescriptionAtTime("13:00:00", 23 * 60 * 60 + "");
 });
 
-describe('Component HappyHourAdd with mocked Date', () => {
-  checkDescriptionAtTime('11:57:58', '122');
-  checkDescriptionAtTime('11:59:59', '1');
-  checkDescriptionAtTime('13:00:00', 23 * 60 * 60 + '');
-});
-
-describe('Component HappyHourAd with mocked Date and delay', () => {
-  checkDescriptionAfterTime('11:57:58', 2, '120');
-  checkDescriptionAfterTime('11:59:58', 1, '1');
-  checkDescriptionAfterTime('13:00:00', 60 * 60, 22 * 60 * 60 + '');
-});
-
-describe('Component HappyHourAdd with mocked Date', () => {
-  checkDescriptionAtTime('12:37:58', mockProps.description);
-  checkDescriptionAtTime('12:59:59', mockProps.description);
-  checkDescriptionAtTime('12:00:00', mockProps.description);
-});
-
-describe('Component HappyHourAd with mocked Date and delay', () => {
-  checkDescriptionAfterTime('11:59:58', 2, mockProps.description);
-  checkDescriptionAfterTime('12:59:59', 1, 23 * 60 * 60 + '');
+describe("Component HappyHourAd with mocked Date and delay", () => {
+  checkDescriptionAfterTime("11:59:58", 2, mockProps.description);
+  checkDescriptionAfterTime("12:59:59", 1, 23 * 60 * 60 + "");
 });
