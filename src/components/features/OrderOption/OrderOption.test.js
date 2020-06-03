@@ -14,11 +14,12 @@ describe('Component OrderOption', () => {
         const component = shallow(<OrderOption />);
         expect(component).toEqual({});
     });
-    it(`should render correct name: ${props.name}`, () => {
+    it(`should render correct name in the title`, () => {
+        const expectedName = 'name'
         const component = shallow(
-            <OrderOption {...props} />
+            <OrderOption name={expectedName} />
         );
-        expect(component.find('.title').text()).toEqual(props.name);
+        expect(component.find('.title').text()).toEqual(expectedName);
     });
 });
 
@@ -78,9 +79,7 @@ for (let type in optionTypes) {
             renderedSubcomponent = subcomponent.dive();
         });
         /* common tests */
-        it('passes dummy test', () => {
-            expect(1).toBe(1);
-        });
+    
         it(`renders ${optionTypes[type]}`, () => {
             expect(subcomponent).toBeTruthy();
             expect(subcomponent.length).toBe(1);
@@ -130,10 +129,10 @@ for (let type in optionTypes) {
                 break;
             }
             case 'icons': {
-                it(`contains ${mockProps.values.length} divs with class .icon`, () => {
+                it(`contains divs with class .icon`, () => {
                     const icons = renderedSubcomponent.find('.icon');
                     console.log(renderedSubcomponent)
-                    expect(icons.length).toBe(mockProps.values.length);
+                    expect(icons.length).toBe(2);
                 });
                 it('should run setOrderOption function on click', () => {
                     renderedSubcomponent.find('.icon').map((icon, key) => {
