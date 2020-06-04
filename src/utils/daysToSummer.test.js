@@ -11,7 +11,6 @@ number: '.number'
 }
 
 const mockProps={
-    title: '.title',
     description:'to summer!',
 
 }
@@ -29,5 +28,33 @@ describe('Component daysToSummer', () => {
         expect(component.exists(select.days)).toEqual(true);
         expect(component.exists(select.number)).toEqual(true);
     });
+
+    it('should render description correctly', ()=>{
+        const component = shallow(<daysToSummer {...mockProps} />);
+        expect(component.exists(select.description).text().toEqual('' + mockProps.description);
+    });
 });
+
+const trueDate = Date;
+const mockdate = customDate = > class extends Date{
+    constructor (...args){
+        if(args.length){
+            super(...args);
+        }else{
+            super(customDate);
+        }
+        return this;
+}
+static now(){
+    return (newdate(customDate)).getTime();
+}
+};
+const checkIsrenderNull = (testDate)=>{
+    it('should return null', ()=>{
+        global.Date = mockDate(`${testDate}`);
+        const component = shallow(<DaysToSummer {...mockProps} />);
+        expect(component.exists('.component')).toEqual(false);
+        global.Date = trueDate;
+    })
+}
 
