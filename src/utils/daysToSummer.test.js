@@ -5,12 +5,15 @@ import daysToSummer from './daysToSummer';
 
 const select = {
     title: '.title',
-description:'.description'
+description:'.description',
+days: '.days',
+number: '.number'
 }
 
 const mockProps={
     title: '.title',
-    description:'.description'
+    description:'to summer!',
+
 }
 
 describe('Component daysToSummer', () => {
@@ -19,10 +22,12 @@ describe('Component daysToSummer', () => {
       expect(component).toBeTruthy();
     });
 
-    it('renders title and description', ()=>{
+    it('renders title days, number and description', ()=>{
         const component = shallow(<daysToSummer {...mockProps} />);
         expect(component.exists(select.title)).toEqual(true);
         expect(component.exists(select.description)).toEqual(true);
+        expect(component.exists(select.days)).toEqual(true);
+        expect(component.exists(select.number)).toEqual(true);
     });
 });
 
