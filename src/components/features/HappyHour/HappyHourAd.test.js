@@ -28,7 +28,7 @@ describe('Component HappyHourAd', () => {
   it('should render title and div from props', () => {
     const component = shallow(<HappyHourAd {...mockProps} />);
     expect(component.find(select.title).text()).toEqual(mockProps.title);
-   
+
   });
 
   it('Should render title and promoDescription', () => {
