@@ -4,8 +4,14 @@ import OrderOption from './OrderOption';
 import DatePicker from 'react-datepicker';
 
 describe('Component OrderOption', () => {
+
+    const props ={
+        type: 'text',
+        name: 'name'
+    };
+
     it('should render without crashing', () => {
-        const component = shallow(<OrderOption name='Lorem ipsum' type='text' />);
+        const component = shallow(<OrderOption {...props} />);
         expect(component).toBeTruthy();
     
     });
@@ -112,7 +118,7 @@ for (let type in optionTypes) {
                 break;
             }
             case 'checkboxes': {
-                it('contains ${mockProps.value.length} input type checkbox', () => {
+                it('contains ${mockProps.values.length} input type checkbox', () => {
                     const checkbox = renderedSubcomponent.find('input[type="checkbox"]').map(
                         (checkbox) => {
                             if (checkbox.prop('value') === testValue) {
@@ -132,7 +138,7 @@ for (let type in optionTypes) {
                 it(`contains divs with class .icon`, () => {
                     const icons = renderedSubcomponent.find('.icon');
                     console.log(renderedSubcomponent)
-                    expect(icons.length).toBe(2);
+                    expect(icons.length).toBe(mockProps.values.length);
                 });
                 it('should run setOrderOption function on click', () => {
                     renderedSubcomponent.find('.icon').map((icon, key) => {
@@ -164,7 +170,7 @@ for (let type in optionTypes) {
             }
             case 'text': {
                 it('should render input type text', () => {
-                    const text = renderedSubcomponent.find('input[type="text"]');
+                    const number = renderedSubcomponent.find('input[type="text"]');
                     expect(number.length).toBe(1);
                 });
                 it('should run setOrderOption on change', () => {
@@ -180,8 +186,8 @@ for (let type in optionTypes) {
             }
             case 'date': {
                 it('should render datapicker', () => {
-                    const datapicker = renderedSubcomponent.find(DatePicker);
-                    expect(datapicker.length).toBe(1);
+                    const datepicker = renderedSubcomponent.find(DatePicker);
+                    expect(datepicker.length).toBe(1);
                 });
                 it('should run setOrderOption function on change', () => {
                     renderedSubcomponent.find(DatePicker).simulate(
